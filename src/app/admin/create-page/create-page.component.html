@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Create new post</h1>
+
+  <div
+    class="form-control"
+    [ngClass]="{ invalid: textControl.touched && textControl.invalid }"
+  >
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" />
+    <div *ngIf="textControl.touched && textControl.invalid" class="validation">
+      <small>Enter title</small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label>Content:</label>
+    <quill-editor placeholder="Enter text" formControlName="text"></quill-editor>
+  </div>
+  
+  <div
+    class="form-control"
+    [ngClass]="{ invalid: textControl.touched && textControl.invalid }"
+  >
+    <label for="author">Post author:</label>
+    <input id="author" type="text" formControlName="author" />
+    <div *ngIf="textControl.touched && textControl.invalid" class="validation">
+      <small>Enter author</small>
+    </div>
+  </div>
+  
+  <button
+    type="submit"
+    class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+  >
+    Create post
+  </button>
+  

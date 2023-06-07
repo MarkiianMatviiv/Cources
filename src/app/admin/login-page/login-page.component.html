@@ -1,0 +1,43 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <h2>Login admin panel</h2>
+
+    <div class="alert alert-danger" *ngIf="auth.error$ |async as error">{{error}}</div>
+
+    <div class="alert alert-info " *ngIf="message">{{message}}</div>
+ 
+    <div
+      class="form-control"
+      [ngClass]="{ invalid: emailControl.touched && emailControl.invalid }"
+    >
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" />
+      <div
+        *ngIf="emailControl.touched && emailControl.invalid"
+        class="validation"
+      >
+        <small>Email is required.</small>
+      </div>
+    </div>
+
+    <div
+      class="form-control"
+      [ngClass]="{
+        invalid: passwordControl.touched && passwordControl.invalid
+      }"
+    >
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password" />
+      <div
+        *ngIf="passwordControl.touched && passwordControl.invalid"
+        class="validation"
+      >
+        <small>Password is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">
+      Login
+    </button>
+  </form>
+</form>
